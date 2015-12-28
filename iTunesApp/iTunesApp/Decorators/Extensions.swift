@@ -8,6 +8,8 @@
 
 import UIKit
 
+// -------------------------------------------------------------------------------
+// MARK: - UIViewController Extension with useful methods
 extension UIViewController {
     
     /**
@@ -44,7 +46,7 @@ extension String {
 }
 
 // ---------------------------------------------------------------------------
-// MARK: NSTimeInterval Extension for displaing the minutes and second from a miliseconds
+// MARK: NSTimeInterval Extension for displaing the minutes and second from a time interval
 extension NSTimeInterval {
     
     /// Minues : Seconds : Miliseconds time interval format
@@ -68,3 +70,29 @@ extension NSTimeInterval {
         return Int(self*1000 % 1000 )
     }
 }
+
+// -------------------------------------------------------------------------------
+// MARK: - UIImageExtension with facilitate image names acces
+
+/**
+ All local iTunesImages names
+*/
+enum iTunesImageNames : String {
+    case iTunesImage = "iTunesImage"
+    case LocalDataBaseImage = "localDataBaseImage"
+    case WebSearchImage = "webSearchImage"
+}
+
+extension UIImage {
+    
+    /**
+     Return an image with local name
+     
+     - parameter imageName: iTunesImageName enum
+     */
+    class func imageWithLocalName(localName imageName: iTunesImageNames) -> UIImage? {
+        let image = UIImage(named: imageName.rawValue)
+        return image
+    }
+}
+

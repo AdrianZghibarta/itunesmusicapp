@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Facade accesor for all utils methods in this project - Not implemented
 class Utils: NSObject {
     
 }

@@ -14,7 +14,7 @@ class MorseCode: NSObject {
     // ---------------------------------------------------------------------------
     // MARK: - Properties
     private var morseString: String = ""
-    private var playThread: NSThread?
+    private var playThread: NSThread? // A good idea is to use NSOperation
     private var isPlaying: Bool = false
     private var endPlayingHandler: (() -> ())?
     

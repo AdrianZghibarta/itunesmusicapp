@@ -21,6 +21,7 @@ class CoreDataManager: NSObject {
         return Singleton.instance
     }
     
+    // -------------------------------------------------------------------------------
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -68,6 +69,7 @@ class CoreDataManager: NSObject {
         return managedObjectContext
     }()
     
+    // -------------------------------------------------------------------------------
     // MARK: - Core Data Saving support
     
     /**

@@ -57,7 +57,7 @@ class SongTableViewCell: UITableViewCell {
         
         if let imageStringUrl = song.artworkUrl100 {
             let imageUrl = NSURL(string: imageStringUrl)
-            self.trackImage.kf_setImageWithURL(imageUrl!, placeholderImage: UIImage(named: "iTunesImage"), optionsInfo: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+            self.trackImage.kf_setImageWithURL(imageUrl!, placeholderImage: UIImage.imageWithLocalName(localName: iTunesImageNames.iTunesImage), optionsInfo: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
                 // To do ...
             })
         }
