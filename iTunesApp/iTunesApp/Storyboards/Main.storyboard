@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="saj-f5-BpL">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Master View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MasterViewController" customModule="iTunesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Type search string ..." translatesAutoresizingMaskIntoConstraints="NO" id="P6i-rn-Al2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.99607843139999996" green="0.42352941179999998" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.99607843139999996" green="0.42352941179999998" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="bz3-pv-Mpu"/>
+                                </connections>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytz-Ni-eTA">
+                                <rect key="frame" x="0.0" y="44" width="320" height="5"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoG-ZR-gaR">
+                                <rect key="frame" x="0.0" y="48" width="320" height="456"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ytz-Ni-eTA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6jy-wQ-h7k"/>
+                            <constraint firstItem="OoG-ZR-gaR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bi1-C9-4be"/>
+                            <constraint firstItem="P6i-rn-Al2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="E4l-Wm-bUY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OoG-ZR-gaR" secondAttribute="bottom" id="LVE-Ed-PLg"/>
+                            <constraint firstAttribute="trailing" secondItem="P6i-rn-Al2" secondAttribute="trailing" id="OPK-oe-Tj5"/>
+                            <constraint firstItem="ytz-Ni-eTA" firstAttribute="top" secondItem="P6i-rn-Al2" secondAttribute="bottom" id="OX6-iY-9cP"/>
+                            <constraint firstAttribute="trailing" secondItem="ytz-Ni-eTA" secondAttribute="trailing" id="Z7m-nD-njf"/>
+                            <constraint firstItem="OoG-ZR-gaR" firstAttribute="top" secondItem="P6i-rn-Al2" secondAttribute="bottom" constant="4" id="Zxl-4u-aNL"/>
+                            <constraint firstItem="OoG-ZR-gaR" firstAttribute="top" secondItem="ytz-Ni-eTA" secondAttribute="bottom" constant="-1" id="dPz-hT-Fbo"/>
+                            <constraint firstAttribute="trailing" secondItem="OoG-ZR-gaR" secondAttribute="trailing" id="dTr-RR-Wec"/>
+                            <constraint firstItem="P6i-rn-Al2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zPc-0x-A5Z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LbO-DQ-x7K">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="PdH-Dh-eoI">
+                            <rect key="frame" x="90" y="8" width="140" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Web"/>
+                                <segment title="Local"/>
+                            </segments>
+                            <color key="tintColor" red="0.99607843137254903" green="0.42352941176470588" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="didSelectNewSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="E1h-dn-3sW"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="OoG-ZR-gaR" id="x29-bw-YP0"/>
+                        <outlet property="searchBar" destination="P6i-rn-Al2" id="EZP-ht-ucU"/>
+                        <outlet property="segmentedControl" destination="PdH-Dh-eoI" id="GtS-oF-gGf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1127" y="344"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="egj-C4-nmm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="saj-f5-BpL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="TCx-yh-FJh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99607843139999996" green="0.42352941179999998" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="R1N-4r-h2x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3e7-Sn-121" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="595" y="344"/>
+        </scene>
+    </scenes>
+</document>

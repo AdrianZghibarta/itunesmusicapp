@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
+    <entity name="Song" representedClassName="CDSong" syncable="YES">
+        <attribute name="artistId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="artistName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistViewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artworkUrl30" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artworkUrl60" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artworkUrl100" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collectionViewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackCensoredName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="trackName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="trackTimeMillis" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Song" positionX="-63" positionY="-18" width="128" height="270"/>
+    </elements>
+</model>
