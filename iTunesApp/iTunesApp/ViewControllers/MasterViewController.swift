@@ -69,15 +69,26 @@ class MasterViewController: UIViewController {
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
         
-        //Set the initial frame
-        self.pageViewController.view.frame = CGRect(x: 50, y: 50, width: 50, height: 50)//self.containerView.frame
-        
         //Add the pageViewController to the superView
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
         
+        //Set the initial page
+        self.initializePages()
+        
+        //Set the second page is only for force xib otulets initialization
+        self.pageViewController.setViewControllers([self.viewControllerArray[1]], direction: .Forward, animated: false, completion: nil)
+        self.pageViewController.setViewControllers([self.viewControllerArray[0]], direction: .Forward, animated: false, completion: nil)
+        
         //Set the constraints
+        self.setConstraintsForPageViewController()
+    }
+    
+    /**
+     Set the constraints for the self.pageViewController (center and equal dimensions with self.containerView)
+     */
+    private func setConstraintsForPageViewController() {
         self.pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         let centerX: NSLayoutConstraint = NSLayoutConstraint(item: self.pageViewController.view, attribute: .CenterX, relatedBy: .Equal, toItem: self.containerView, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -89,12 +100,6 @@ class MasterViewController: UIViewController {
         let equalHeight: NSLayoutConstraint = NSLayoutConstraint(item: self.pageViewController.view, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1, constant: 0)
         
         self.view.addConstraints([centerX, centerY, equalHeight, equalWidth])
-        
-        //Set the initial page
-        self.initializePages()
-        //Set the second page is only for force xib otulets initialization
-        self.pageViewController.setViewControllers([self.viewControllerArray[1]], direction: .Forward, animated: false, completion: nil)
-        self.pageViewController.setViewControllers([self.viewControllerArray[0]], direction: .Forward, animated: false, completion: nil)
     }
     
     // -------------------------------------------------------------------------------

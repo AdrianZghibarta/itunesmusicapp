@@ -73,10 +73,19 @@ class DetailMusicViewController: UIViewController {
     Customize some interface elements
     */
     private func customize() {
+        
+        //Set the corner radius
         self.playButton.layer.cornerRadius = 3.0
         self.playButton.layer.masksToBounds = true
+        
         self.morseButton.layer.cornerRadius = 3.0
         self.morseButton.layer.masksToBounds = true
+        
+        self.trackImage.layer.cornerRadius = 3.0
+        self.trackImage.layer.masksToBounds = true
+        
+        self.backTextImage.layer.cornerRadius = 3.0
+        self.backTextImage.layer.masksToBounds = true
     }
     
     // -------------------------------------------------------------------------------
@@ -89,85 +98,135 @@ class DetailMusicViewController: UIViewController {
         
         if let songObject = self.song  {
             
-            // Track Name
-            if let trackName = songObject.trackName {
-                self.trackTitleLabel.text! = "\"\(trackName)\""
-                self.morseCode = MorseCode(string: trackName)
-            }
-            else {
-                self.trackTitleLabel.text! = "No Title Information"
-                self.morseButton.enabled = false
-            }
-            
-            // Artist Name
-            if let artistName = songObject.artistName {
-                self.artistNameLabel.text! = "By \(artistName)"
-            }
-            else {
-                self.artistNameLabel.text! = "No Artist Information"
-            }
-            
-            // Collection
-            if let collectionName = songObject.collectionName {
-                self.trackCollectionLabel.text! = "From \(collectionName) Album"
-            }
-            else {
-                self.trackCollectionLabel.text! = "No Album Information"
-            }
-            
-            if let imageStringUrl = songObject.artworkUrl100 {
-                let imageUrl = NSURL(string: imageStringUrl)
-                self.trackImage.kf_setImageWithURL(imageUrl!, placeholderImage: UIImage.imageWithLocalName(localName: iTunesImageNames.iTunesImage), optionsInfo: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
-                    //To do ...
-                })
-            }
-            
-            //Set the length Information
-            if let length = songObject.trackTimeMillis {
-                let timeInterval = NSTimeInterval(length/1000)
-                self.trackLengthLabel.text! = "Duration: \(timeInterval.minutesSeconds)"
-            }
-            else {
-                self.trackLengthLabel.text! = ""
-            }
-            
-            
-            //Set the price information
-            if let price = songObject.trackPrice {
-                self.trackPriceLabel.text! = "Price: \(price)"
-                if let currency = songObject.currency {
-                    self.trackPriceLabel.text!.appendContentsOf(" \(currency)")
-                }
-            }
-            else {
-                self.trackPriceLabel.text! = ""
-            }
-            
-            //Set the corner radius
-            self.trackImage.layer.cornerRadius = 3.0
-            self.trackImage.layer.masksToBounds = true
-            
-            self.backTextImage.layer.cornerRadius = 3.0
-            self.backTextImage.layer.masksToBounds = true
+            //Configure the labels
+            self.configureTrackNameLabel(forSong: songObject)
+            self.configureArtistNameLabel(forSong: songObject)
+            self.configureCollectionLabel(forSong: songObject)
+            self.configureTrackLengthLabel(forSong: songObject)
+            self.configureTrackPriceLabel(forSong: songObject)
             
             // Play song configuration
-            if let previewUrl = self.song?.previewUrl {
-                let url = NSURL(string: previewUrl)
-                playerItem = AVPlayerItem(URL: url!)
-                player=AVPlayer(playerItem: playerItem!)
-            }
-            else
-            {
-                self.playButton.enabled = false
-            }
+            self.configurePlayer(forSong: songObject)
             
             // Add right button for navigation bar
-            let actionButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "songAction")
-            navigationItem.rightBarButtonItems = [actionButton]
+            self.configureRightBarButtonItem()
         }
         else {
             self.showAlertMessage("Sorry", alertMessage: "An error has occured")
         }
+    }
+    
+    /**
+     Configure the self.trackNameLabel for a song
+     
+     - parameter song: Song object
+     */
+    private func configureTrackNameLabel(forSong song: Song) {
+        // Track Name
+        if let trackName = song.trackName {
+            self.trackTitleLabel.text! = "\"\(trackName)\""
+            self.morseCode = MorseCode(string: trackName)
+        }
+        else {
+            self.trackTitleLabel.text! = "No Title Information"
+            self.morseButton.enabled = false
+        }
+    }
+    
+    /**
+     Configure the self.artistNameLabel for a song
+     
+     - parameter song: Song object
+     */
+    private func configureArtistNameLabel(forSong song: Song) {
+        // Artist Name
+        if let artistName = song.artistName {
+            self.artistNameLabel.text! = "By \(artistName)"
+        }
+        else {
+            self.artistNameLabel.text! = "No Artist Information"
+        }
+    }
+    
+    /**
+     Configure the self.collectionName for a song
+     
+     - parameter song: Song object
+     */
+    private func configureCollectionLabel(forSong song: Song) {
+        // Collection
+        if let collectionName = song.collectionName {
+            self.trackCollectionLabel.text! = "From \(collectionName) Album"
+        }
+        else {
+            self.trackCollectionLabel.text! = "No Album Information"
+        }
+        
+        if let imageStringUrl = song.artworkUrl100 {
+            let imageUrl = NSURL(string: imageStringUrl)
+            self.trackImage.kf_setImageWithURL(imageUrl!, placeholderImage: UIImage.imageWithLocalName(localName: iTunesImageNames.iTunesImage), optionsInfo: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+                //To do ...
+            })
+        }
+    }
+    
+    /**
+     Configure the self.trackLengthLabel for a song
+     
+     - parameter song: Song object
+     */
+    private func configureTrackLengthLabel(forSong song: Song) {
+        //Set the length Information
+        if let length = song.trackTimeMillis {
+            let timeInterval = NSTimeInterval(length/1000)
+            self.trackLengthLabel.text! = "Duration: \(timeInterval.minutesSeconds)"
+        }
+        else {
+            self.trackLengthLabel.text! = ""
+        }
+    }
+    
+    /**
+     Configure the self.trackPrice for a song
+     
+     - parameter song: Song object
+     */
+    private func configureTrackPriceLabel(forSong song: Song) {
+        //Set the price information
+        if let price = song.trackPrice {
+            self.trackPriceLabel.text! = "Price: \(price)"
+            if let currency = song.currency {
+                self.trackPriceLabel.text!.appendContentsOf(" \(currency)")
+            }
+        }
+        else {
+            self.trackPriceLabel.text! = ""
+        }
+    }
+    
+    /**
+     Configure the AVplayer for a song
+     
+     - parameter song: Song object
+     */
+    private func configurePlayer(forSong song: Song) {
+        if let previewUrl = song.previewUrl {
+            let url = NSURL(string: previewUrl)
+            playerItem = AVPlayerItem(URL: url!)
+            player=AVPlayer(playerItem: playerItem!)
+        }
+        else
+        {
+            self.playButton.enabled = false
+        }
+    }
+    
+    /**
+     Add a right bar button item to the navigation bar with actions for song
+     */
+    private func configureRightBarButtonItem() {
+        let actionButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "songAction")
+        navigationItem.rightBarButtonItems = [actionButton]
     }
     
     /**
@@ -308,4 +367,3 @@ class DetailMusicViewController: UIViewController {
     }
     */
 }
-
